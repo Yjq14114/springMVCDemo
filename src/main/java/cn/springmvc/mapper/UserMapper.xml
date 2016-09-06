@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.springmvc.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="cn.springmvc.model.User" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="FULLNAME" property="fullname" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="COMPANYNAME" property="companyname" jdbcType="VARCHAR" />
+    <result column="COMPANYADRESS" property="companyadress" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+    <result column="JOB" property="job" jdbcType="VARCHAR" />
+    <result column="TEL" property="tel" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="COUNTRY" property="country" jdbcType="VARCHAR" />
+    <result column="ZIP" property="zip" jdbcType="VARCHAR" />
+    <result column="SUPERUSER" property="superuser" jdbcType="VARCHAR" />
+    <result column="DELSOFT" property="delsoft" jdbcType="VARCHAR" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+    <result column="LOCATION" property="location" jdbcType="OTHER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USERNAME, PASSWORD, FULLNAME, TITLE, COMPANYNAME, COMPANYADRESS, CITY, JOB, TEL, 
+    EMAIL, COUNTRY, ZIP, SUPERUSER, DELSOFT, NOTE, LOCATION
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.springmvc.model.User" >
+    insert into user (ID, USERNAME, PASSWORD, 
+      FULLNAME, TITLE, COMPANYNAME, 
+      COMPANYADRESS, CITY, JOB, 
+      TEL, EMAIL, COUNTRY, 
+      ZIP, SUPERUSER, DELSOFT, 
+      NOTE, LOCATION)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{fullname,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{companyname,jdbcType=VARCHAR}, 
+      #{companyadress,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, 
+      #{zip,jdbcType=VARCHAR}, #{superuser,jdbcType=VARCHAR}, #{delsoft,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{location,jdbcType=OTHER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.springmvc.model.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="username != null" >
+        USERNAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="fullname != null" >
+        FULLNAME,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="companyname != null" >
+        COMPANYNAME,
+      </if>
+      <if test="companyadress != null" >
+        COMPANYADRESS,
+      </if>
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="job != null" >
+        JOB,
+      </if>
+      <if test="tel != null" >
+        TEL,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="country != null" >
+        COUNTRY,
+      </if>
+      <if test="zip != null" >
+        ZIP,
+      </if>
+      <if test="superuser != null" >
+        SUPERUSER,
+      </if>
+      <if test="delsoft != null" >
+        DELSOFT,
+      </if>
+      <if test="note != null" >
+        NOTE,
+      </if>
+      <if test="location != null" >
+        LOCATION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null" >
+        #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyadress != null" >
+        #{companyadress,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null" >
+        #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="superuser != null" >
+        #{superuser,jdbcType=VARCHAR},
+      </if>
+      <if test="delsoft != null" >
+        #{delsoft,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=OTHER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.springmvc.model.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="fullname != null" >
+        FULLNAME = #{fullname,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="companyname != null" >
+        COMPANYNAME = #{companyname,jdbcType=VARCHAR},
+      </if>
+      <if test="companyadress != null" >
+        COMPANYADRESS = #{companyadress,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="job != null" >
+        JOB = #{job,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        TEL = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        COUNTRY = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="zip != null" >
+        ZIP = #{zip,jdbcType=VARCHAR},
+      </if>
+      <if test="superuser != null" >
+        SUPERUSER = #{superuser,jdbcType=VARCHAR},
+      </if>
+      <if test="delsoft != null" >
+        DELSOFT = #{delsoft,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null" >
+        LOCATION = #{location,jdbcType=OTHER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.springmvc.model.User" >
+    update user
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      FULLNAME = #{fullname,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      COMPANYNAME = #{companyname,jdbcType=VARCHAR},
+      COMPANYADRESS = #{companyadress,jdbcType=VARCHAR},
+      CITY = #{city,jdbcType=VARCHAR},
+      JOB = #{job,jdbcType=VARCHAR},
+      TEL = #{tel,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      COUNTRY = #{country,jdbcType=VARCHAR},
+      ZIP = #{zip,jdbcType=VARCHAR},
+      SUPERUSER = #{superuser,jdbcType=VARCHAR},
+      DELSOFT = #{delsoft,jdbcType=VARCHAR},
+      NOTE = #{note,jdbcType=VARCHAR},
+      LOCATION = #{location,jdbcType=OTHER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
