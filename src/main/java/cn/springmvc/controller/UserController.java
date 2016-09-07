@@ -4,6 +4,7 @@ import cn.springmvc.model.User;
 import cn.springmvc.service.impl.IUserService;
 import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -32,7 +33,6 @@ public class UserController{
 
     @Resource
     private IUserService userService;
-
 
     @RequestMapping(value = "/getPerson", produces = {"application/json;charset=UTF-8"})
     @ResponseBody
@@ -69,12 +69,10 @@ public class UserController{
     @RequestMapping("/check")
     @ResponseBody
     public String check(String username) throws Exception{
-        List<User> userList = userService.userList();
-        for(User user:userList){
-            if (username.equals(user.getUsername())){
-                return "usersame";
-            }
-        }
-        return "0";
+        List<User> userList = userService.getUserByName(username);
+        if (userList.size()==0)
+            return "0";
+        else
+            return userList.get(0).getUsername();
     }
 }

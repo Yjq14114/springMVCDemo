@@ -27,8 +27,8 @@
                 }else{
                     $("p#p").hide(100);
                 }
-                $.post("<%=basePath%>user/check",{username:""+$("#username").val()+""},function(data){
-                        if(data=="usersame"){
+                $.post("<%=basePath%>/user/check",{username:""+$("#username").val()+""},function(data){
+                        if(data==$("#username").val()){
                             alert("该用户已被注册");
                         }
                 });

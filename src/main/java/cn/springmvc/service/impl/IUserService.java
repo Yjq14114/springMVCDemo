@@ -11,5 +11,6 @@ import java.util.List;
 @Repository
 public interface IUserService {
     User getUserById(int userId);
-    List<User> userList();
+    List<User> userList(String username);
+    List<User> getUserByName(String username);
 }
